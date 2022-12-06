@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "glue:BatchGet*",
+                "glue:Get*",
+                "glue:Query*",
+                "glue:Search*",
+                "glue:Check*",
+                "glue:List*",
+                "iam:ListRoles",
+                "sagemaker:ListNotebookInstances"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

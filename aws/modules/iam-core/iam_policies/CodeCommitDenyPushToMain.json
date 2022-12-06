@@ -1,0 +1,29 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": [
+                "codecommit:GitPush",
+                "codecommit:DeleteBranch",
+                "codecommit:PutFile",
+                "codecommit:MergeBranchesByFastForward",
+                "codecommit:MergeBranchesBySquash",
+                "codecommit:MergeBranchesByThreeWay"
+            ],
+            "Resource": "arn:aws:codecommit:us-east-1:063452500070:*",
+            "Condition": {
+                "StringEqualsIfExists": {
+                    "codecommit:References": [
+                        "refs/heads/main",
+                        "refs/heads/master",
+                        "refs/heads/develop"
+                    ]
+                },
+                "Null": {
+                    "codecommit:References": "false"
+                }
+            }
+        }
+    ]
+}

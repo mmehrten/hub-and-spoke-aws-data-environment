@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "airflow:CreateWebLoginToken",
+            "Resource": [
+                "arn:aws:airflow:us-east-1:063452500070:role/*/Viewer"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "airflow:ListEnvironments",
+            "Resource": "arn:aws:airflow:us-east-1:063452500070:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "airflow:GetEnvironment",
+            "Resource": "arn:aws:airflow:us-east-1:063452500070:environment/*"
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "application-autoscaling:DescribeScalableTargets",
+                "application-autoscaling:DescribeScalingActivities",
+                "application-autoscaling:DescribeScalingPolicies",
+                "appmesh:DescribeVirtualGateway",
+                "appmesh:DescribeVirtualNode",
+                "appmesh:ListMeshes",
+                "appmesh:ListVirtualGateways",
+                "appmesh:ListVirtualNodes",
+                "autoscaling:Describe*",
+                "cloudformation:DescribeStack*",
+                "cloudwatch:DescribeAlarms",
+                "cloudwatch:GetMetricStatistics",
+                "codedeploy:BatchGetApplicationRevisions",
+                "codedeploy:BatchGetApplications",
+                "codedeploy:BatchGetDeploymentGroups",
+                "codedeploy:BatchGetDeployments",
+                "codedeploy:GetApplication",
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:GetDeploymentConfig",
+                "codedeploy:GetDeploymentGroup",
+                "codedeploy:GetDeploymentTarget",
+                "codedeploy:ListApplicationRevisions",
+                "codedeploy:ListApplications",
+                "codedeploy:ListDeploymentConfigs",
+                "codedeploy:ListDeploymentGroups",
+                "codedeploy:ListDeployments",
+                "codedeploy:ListDeploymentTargets",
+                "ec2:Describe*",
+                "ecs:List*",
+                "ecs:Describe*",
+                "ecr:DescribeRepositories",
+                "elasticfilesystem:DescribeAccessPoints",
+                "elasticfilesystem:DescribeFileSystems",
+                "elasticloadbalancing:DescribeListeners",
+                "elasticloadbalancing:DescribeLoadBalancers",
+                "elasticloadbalancing:DescribeRules",
+                "elasticloadbalancing:DescribeTargetGroups",
+                "events:DescribeRule",
+                "events:ListRuleNamesByTarget",
+                "events:ListTargetsByRule",
+                "fsx:DescribeFileSystems",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListInstanceProfiles",
+                "iam:ListRoles",
+                "lambda:ListFunctions",
+                "logs:DescribeLogGroups",
+                "logs:FilterLogEvents",
+                "route53:GetHealthCheck",
+                "route53:GetHostedZone",
+                "route53:ListHostedZonesByName",
+                "servicediscovery:GetNamespace",
+                "servicediscovery:GetOperation",
+                "servicediscovery:GetService",
+                "servicediscovery:ListNamespaces",
+                "servicediscovery:ListServices",
+                "sns:ListTopics"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:GetParametersByPath"
+            ],
+            "Resource": "arn:aws:ssm:*:*:parameter/aws/service/ecs*"
+        }
+    ]
+}

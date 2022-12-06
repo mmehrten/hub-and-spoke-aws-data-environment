@@ -1,0 +1,161 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ElasticMapReduceActions",
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:*",
+                "elasticmapreduce:AddInstanceFleet",
+                "elasticmapreduce:AddInstanceGroups",
+                "elasticmapreduce:AddJobFlowSteps",
+                "elasticmapreduce:AddTags",
+                "elasticmapreduce:CancelSteps",
+                "elasticmapreduce:CreateEditor",
+                "elasticmapreduce:CreateSecurityConfiguration",
+                "elasticmapreduce:DeleteEditor",
+                "elasticmapreduce:DeleteSecurityConfiguration",
+                "elasticmapreduce:DescribeCluster",
+                "elasticmapreduce:DescribeEditor",
+                "elasticmapreduce:DescribeJobFlows",
+                "elasticmapreduce:DescribeSecurityConfiguration",
+                "elasticmapreduce:DescribeStep",
+                "elasticmapreduce:Get*",
+                "elasticmapreduce:List*",
+                "elasticmapreduce:ModifyCluster",
+                "elasticmapreduce:ModifyInstanceFleet",
+                "elasticmapreduce:ModifyInstanceGroups",
+                "elasticmapreduce:OpenEditorInConsole",
+                "elasticmapreduce:PutAutoScalingPolicy",
+                "elasticmapreduce:PutBlockPublicAccessConfiguration",
+                "elasticmapreduce:PutManagedScalingPolicy",
+                "elasticmapreduce:RemoveAutoScalingPolicy",
+                "elasticmapreduce:RemoveManagedScalingPolicy",
+                "elasticmapreduce:RemoveTags",
+                "elasticmapreduce:RunJobFlow",
+                "elasticmapreduce:SetTerminationProtection",
+                "elasticmapreduce:StartEditor",
+                "elasticmapreduce:StopEditor",
+                "elasticmapreduce:TerminateJobFlows",
+                "elasticmapreduce:ViewEventsFromAllClustersInConsole"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "ViewMetricsInEMRConsole",
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:GetMetricStatistics"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "PassRoleForElasticMapReduce",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::063452500070:role/EMRStudioRole",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "elasticmapreduce.amazonaws.com*"
+                }
+            }
+        },
+        {
+            "Sid": "PassRoleForElasticMapReduceDefault",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::063452500070:role/EMR_DefaultRole",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "elasticmapreduce.amazonaws.com*"
+                }
+            }
+        },
+        {
+            "Sid": "PassRoleForEC2",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::*:role/EMR_EC2_DefaultRole",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "ec2.amazonaws.com*"
+                }
+            }
+        },
+        {
+            "Sid": "PassRoleForAutoScaling",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::*:role/EMR_AutoScaling_DefaultRole",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "application-autoscaling.amazonaws.com*"
+                }
+            }
+        },
+        {
+            "Sid": "ElasticMapReduceServiceLinkedRole",
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/elasticmapreduce.amazonaws.com*/AWSServiceRoleForEMRCleanup*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:AWSServiceName": [
+                        "elasticmapreduce.amazonaws.com",
+                        "elasticmapreduce.amazonaws.com.cn"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "ConsoleUIActions",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeAccountAttributes",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeImages",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeNatGateways",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeVpcEndpoints",
+                "s3:ListAllMyBuckets",
+                "iam:ListRoles"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AthenaQueryAccess",
+            "Effect": "Allow",
+            "Action": [
+                "athena:GetWorkGroup",
+                "athena:StartQueryExecution",
+                "athena:StopQueryExecution",
+                "athena:GetQueryExecution",
+                "athena:GetQueryResults"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AthenaS3Access",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+                "s3:ListMultipartUploadParts",
+                "s3:AbortMultipartUpload",
+                "s3:CreateBucket",
+                "s3:PutObject",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Resource": [
+                "arn:aws:s3:::aws-athena-query-results-*",
+                "arn:aws:s3:::athena-examples*"
+            ]
+        }
+    ]
+}

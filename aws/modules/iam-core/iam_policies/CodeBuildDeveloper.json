@@ -1,0 +1,147 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CodeBuildAllowAccess",
+            "Action": [
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+                "codebuild:StartBuildBatch",
+                "codebuild:StopBuildBatch",
+                "codebuild:RetryBuild",
+                "codebuild:RetryBuildBatch",
+                "codebuild:BatchGet*",
+                "codebuild:GetResourcePolicy",
+                "codebuild:DescribeTestCases",
+                "codebuild:DescribeCodeCoverages",
+                "codebuild:List*",
+                "codecommit:GetBranch",
+                "codecommit:GetCommit",
+                "codecommit:GetRepository",
+                "codecommit:ListBranches",
+                "cloudwatch:GetMetricStatistics",
+                "events:DescribeRule",
+                "events:ListTargetsByRule",
+                "events:ListRuleNamesByTarget",
+                "logs:GetLogEvents",
+                "s3:GetBucketLocation",
+                "s3:ListAllMyBuckets"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Sid": "CodePipelineAllow",
+            "Action": [
+                "codepipeline:List*",
+                "codepipeline:Get*",
+                "codepipeline:Update*",
+                "codepipeline:Tag*",
+                "codepipeline:Untag*",
+                "codepipeline:Start*",
+                "codepipeline:Stop*",
+                "codepipeline:Retry*",
+                "codepipeline:Create*",
+                "codepipeline:Delete*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Sid": "ECRAllow",
+            "Action": [
+                "ecr:Describe*",
+                "ecr:Get*",
+                "ecr:List*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Sid": "EventsListAllow",
+            "Action": [
+                "events:List*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Sid": "SSMCodeBuildALlowAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:PutParameter"
+            ],
+            "Resource": "arn:aws:ssm:*:*:parameter/CodeBuild/*"
+        },
+        {
+            "Sid": "SSMCodeBuildAllowStartSession",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": "arn:aws:ecs:*:*:task/*/*"
+        },
+        {
+            "Sid": "CodeStarConnectionsUserAccess",
+            "Effect": "Allow",
+            "Action": [
+                "codestar-connections:ListConnections",
+                "codestar-connections:GetConnection"
+            ],
+            "Resource": "arn:aws:codestar-connections:*:*:connection/*"
+        },
+        {
+            "Sid": "CodeStarNotificationsReadWriteAccess",
+            "Effect": "Allow",
+            "Action": [
+                "codestar-notifications:CreateNotificationRule",
+                "codestar-notifications:DescribeNotificationRule",
+                "codestar-notifications:UpdateNotificationRule",
+                "codestar-notifications:Subscribe",
+                "codestar-notifications:Unsubscribe"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringLike": {
+                    "codestar-notifications:NotificationsForResource": "arn:aws:codebuild:*"
+                }
+            }
+        },
+        {
+            "Sid": "CodeStarNotificationsListAccess",
+            "Effect": "Allow",
+            "Action": [
+                "codestar-notifications:ListNotificationRules",
+                "codestar-notifications:ListEventTypes",
+                "codestar-notifications:ListTargets",
+                "codestar-notifications:ListTagsforResource"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "SNSTopicListAccess",
+            "Effect": "Allow",
+            "Action": [
+                "sns:ListTopics",
+                "sns:GetTopicAttributes"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "CodeStarNotificationsChatbotAccess",
+            "Effect": "Allow",
+            "Action": [
+                "chatbot:DescribeSlackChannelConfigurations"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "IAMPoliciesForTerraform",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListPolicies"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
